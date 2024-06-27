@@ -1,0 +1,21 @@
+import csv
+from datetime import datetime
+
+def log_habit(habit, effectiveness):
+    date = datetime.now().strftime('%Y-%m-%d')
+    with open('habits.csv', mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([date, habit, effectiveness])
+    print(f"Habit '{habit}' logged with effectiveness {effectiveness} on {date}.")
+
+def main():
+    print("Log your daily habits.")
+    while True:
+        habit = input("Enter the habit name (or 'q' to quit): ")
+        if habit.lower() == 'q':
+            break
+        effectiveness = input("Rate the effectiveness (1-10): ")
+        log_habit(habit, effectiveness)
+
+if __name__ == "__main__":
+    main()
